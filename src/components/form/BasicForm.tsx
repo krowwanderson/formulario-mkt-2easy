@@ -22,13 +22,7 @@ import {
 } from "@/components/ui/select";
 import FormHeader from "./FormHeader";
 import {
-  Car,
-  Eye,
-  HeartPulse,
   SendIcon,
-  Shield,
-  Stethoscope,
-  type LucideIcon,
 } from "lucide-react";
 import logo from "@/assets/final.png";
 
@@ -110,11 +104,6 @@ const formatPhoneNumber = (digits: string, code: string): string => {
 const getPhonePlaceholder = (code: string): string =>
   getPhoneConfig(code).placeholder;
 
-type InsuranceOption = {
-  id: string;
-  icon: LucideIcon;
-};
-
 interface BasicFormProps {
   initialZip?: string;
   startAtContact?: boolean;
@@ -129,8 +118,8 @@ const BasicForm: React.FC<BasicFormProps> = ({
   initialZip = "",
   startAtContact = false,
   onReturnToLanding,
-  referralName,
-  referralCode,
+  referralName: _referralName, // Prefixo com _ para indicar que não é usado
+  referralCode: _referralCode, // Prefixo com _ para indicar que não é usado
   vendorCode,
 }) => {
   const { t, i18n } = useTranslation();

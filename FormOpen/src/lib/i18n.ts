@@ -171,7 +171,7 @@ const resources = {
         summary: {
           title: "Dados do atendimento",
           zip: "ZIP Code",
-          insurances: "Seguros desejados",
+          insurances: "Tipo deSeguro",
           referral: "Indicador",
           referralId: "ID do indicador",
           referralCode: "Código de referral",
@@ -313,9 +313,28 @@ const resources = {
   },
 };
 
+// Função para detectar o idioma do navegador e mapear para os idiomas suportados
+const detectLanguage = (): string => {
+  // Pega o idioma do navegador (ex: "pt-BR", "en-US", "es-ES")
+  const browserLang = navigator.language || (navigator as any).userLanguage || "en";
+  
+  // Extrai apenas o código principal (ex: "pt-BR" -> "pt")
+  const langCode = browserLang.split("-")[0].toLowerCase();
+  
+  // Mapeia os códigos para os idiomas suportados
+  const languageMap: Record<string, string> = {
+    "pt": "br",  // Português -> Português BR
+    "es": "es",  // Espanhol -> Espanhol
+    "en": "en",  // Inglês -> Inglês
+  };
+  
+  // Retorna o idioma mapeado ou "en" como padrão
+  return languageMap[langCode] || "en";
+};
+
 void i18n.use(initReactI18next).init({
   resources,
-  lng: "en",
+  lng: detectLanguage(), // Detecta automaticamente o idioma do navegador
   fallbackLng: "en",
   interpolation: {
     escapeValue: false,

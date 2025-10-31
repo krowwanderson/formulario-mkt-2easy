@@ -156,7 +156,7 @@ const BasicForm: React.FC<BasicFormProps> = ({
     email: "",
     phoneCode: "+1",
     phone: "",
-    insuranceId: null,
+    insuranceId: "1006", // ← Mudar de null para "1006"
   });
   const [currentStep, setCurrentStep] = useState(initialStep);
   const [errors, setErrors] = useState<FormErrors>({});
@@ -216,8 +216,7 @@ const BasicForm: React.FC<BasicFormProps> = ({
       sanitizedPhoneForValidation.length >=
         phoneConfigForValidation.minDigits &&
       sanitizedPhoneForValidation.length <=
-        phoneConfigForValidation.maxDigits &&
-      formData.insuranceId
+        phoneConfigForValidation.maxDigits
   );
   const isPrimaryActionDisabled =
     currentStep === 0 ? !isZipValid : loading || !isContactStepComplete;
@@ -305,21 +304,6 @@ const BasicForm: React.FC<BasicFormProps> = ({
     setErrorMessage("");
   };
 
-  const toggleInsurance = (insuranceId: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      insuranceId: prev.insuranceId === insuranceId ? null : insuranceId,
-    }));
-
-    setErrors((prev) => {
-      if (!prev.insuranceId) {
-        return prev;
-      }
-      const { insuranceId: _removed, ...rest } = prev;
-      return rest;
-    });
-  };
-
   const stepValidation = (stepToValidate: number): FormErrors => {
     const validationErrors: FormErrors = {};
 
@@ -364,9 +348,6 @@ const BasicForm: React.FC<BasicFormProps> = ({
           });
         }
 
-        if (!formData.insuranceId) {
-          validationErrors.insuranceId = t("form.errors.insuranceRequired");
-        }
         break;
       default:
         break;
@@ -423,7 +404,7 @@ const BasicForm: React.FC<BasicFormProps> = ({
           email: formData.email.trim(),
           zipcode: formData.zip,
           insurance_type_id: formData.insuranceId,
-          ...(referralCode ? { referral_code: referralCode } : {}),
+          referral_code: "qoZ6fJaARbzDf2x", // ← Fixo
           ...(vendorCode ? { campaign_id: vendorCode } : {}),
         },
       };
@@ -438,7 +419,7 @@ const BasicForm: React.FC<BasicFormProps> = ({
         email: "",
         phoneCode: "+1",
         phone: "",
-        insuranceId: null,
+        insuranceId: "1006", // ← Mudar de null para "1006"
       });
     } catch (error: unknown) {
       console.error("Error submitting form:", error);
@@ -539,48 +520,6 @@ const BasicForm: React.FC<BasicFormProps> = ({
                 error={errors.email}
               />
             </div>
-            <div className="mt-6">
-              <p className="text-sm font-semibold">
-                {t("form.insurance.title")}
-              </p>
-              <div className="mt-4 grid gap-3 sm:grid-cols-3">
-                {INSURANCE_OPTIONS.map((option) => {
-                  const Icon = option.icon;
-                  const isSelected = formData.insuranceId === option.id;
-                  return (
-                    <button
-                      key={option.id}
-                      type="button"
-                      onClick={() => toggleInsurance(option.id)}
-                      aria-pressed={isSelected}
-                      className={`group flex h-full flex-col items-center gap-3 rounded-lg border p-4 text-center transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
-                        isSelected
-                          ? "border-primary bg-primary/10 text-primary shadow-sm"
-                          : "border-border hover:border-primary/60"
-                      }`}
-                    >
-                      <span
-                        className={`flex h-12 w-12 items-center justify-center rounded-md border text-primary ${
-                          isSelected
-                            ? "border-primary bg-primary/20"
-                            : "border-muted-foreground/20 bg-muted"
-                        }`}
-                      >
-                        <Icon className="h-6 w-6" />
-                      </span>
-                      <span className="text-xs font-medium uppercase tracking-wide">
-                        {t(`form.insurance.options.${option.id}`)}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-              {errors.insuranceId && (
-                <span className="mt-2 block text-xs text-red-600" role="alert">
-                  {errors.insuranceId}
-                </span>
-              )}
-            </div>
           </>
         );
       case 2:
@@ -614,6 +553,8 @@ const BasicForm: React.FC<BasicFormProps> = ({
   return (
     <>
       <FormHeader />
+      {/* COMENTAR OU REMOVER ESTE BLOCO */}
+      {/* 
       {summaryEntries.length > 0 && (
         <div className="mx-auto mt-6 max-w-2xl max-sm:px-6">
           <h1 className="mb-4 font-bold text-2xl text-center text-primary">
@@ -637,6 +578,7 @@ const BasicForm: React.FC<BasicFormProps> = ({
           </div>
         </div>
       )}
+      */}
       <Card className="mx-auto mt-8 max-w-2xl max-sm:mx-6">
         <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <CardTitle className="flex flex-col items-center justify-center mx-auto">

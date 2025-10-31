@@ -115,14 +115,6 @@ type InsuranceOption = {
   icon: LucideIcon;
 };
 
-const INSURANCE_OPTIONS: InsuranceOption[] = [
-  { id: "1002", icon: HeartPulse },
-  { id: "1006", icon: Stethoscope },
-  { id: "1003", icon: Eye },
-  { id: "1016", icon: Car },
-  { id: "1008", icon: Shield },
-];
-
 interface BasicFormProps {
   initialZip?: string;
   startAtContact?: boolean;
@@ -163,43 +155,6 @@ const BasicForm: React.FC<BasicFormProps> = ({
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-
-  const currentZip = formData.zip || initialZip;
-  const summaryEntries = [
-    currentZip && {
-      key: "zip",
-      label: t("form.summary.zip"),
-      value: currentZip,
-    },
-    formData.insuranceId && {
-      key: "insuranceId",
-      label: t("form.summary.insurances"),
-      value: t(`form.insurance.options.${formData.insuranceId}`),
-    },
-    referralName && {
-      key: "referralName",
-      label: t("form.summary.referral"),
-      value: referralName,
-    },
-    referralCode && {
-      key: "referralCode",
-      label: t("form.summary.referralCode"),
-      value: referralCode,
-    },
-    vendorCode && {
-      key: "vendorCode",
-      label: t("form.summary.vendorCode"),
-      value: vendorCode,
-    },
-  ].filter(
-    (
-      entry
-    ): entry is {
-      key: string;
-      label: string;
-      value: string;
-    } => Boolean(entry)
-  );
 
   const cardTitle = wizardTitles[currentStep] ?? "";
 

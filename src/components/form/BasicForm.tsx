@@ -25,6 +25,7 @@ import {
   SendIcon,
 } from "lucide-react";
 import logo from "@/assets/final.png";
+import { trackLead } from "@/utils/facebookPixel";
 
 interface FormData {
   zip: string;
@@ -354,6 +355,15 @@ const BasicForm: React.FC<BasicFormProps> = ({
       };
 
       await axios.post(baseUrl, params);
+      
+      // Disparar evento Lead do Facebook Pixel
+      trackLead({
+        firstName: formData.firstName.trim(),
+        lastName: formData.lastName.trim(),
+        email: formData.email.trim(),
+        zipcode: formData.zip,
+      });
+      
       setSuccessMessage(t("form.messages.success"));
       goToStep(2);
       setFormData({

@@ -150,6 +150,9 @@ const BasicForm: React.FC<BasicFormProps> = ({
 
   const cardTitle = wizardTitles[currentStep] ?? "";
 
+  // Verificar se deve mostrar o checkbox de consentimento (apenas BR ou ES)
+  const shouldShowConsentCheckbox = i18n.language === "br" || i18n.language === "es";
+
   const emailRegex = /^[\w.%+-]+@[\w.-]+\.[A-Za-z]{2,}$/;
   const phoneConfigForValidation = getPhoneConfig(formData.phoneCode);
   const sanitizedPhoneForValidation = formData.phone.replace(/\D/g, "");
@@ -164,7 +167,7 @@ const BasicForm: React.FC<BasicFormProps> = ({
         phoneConfigForValidation.minDigits &&
       sanitizedPhoneForValidation.length <=
         phoneConfigForValidation.maxDigits &&
-      formData.consentToMessages // ← ADICIONAR VALIDAÇÃO
+      (shouldShowConsentCheckbox ? formData.consentToMessages : true) // ← VALIDAÇÃO CONDICIONAL
   );
   const isPrimaryActionDisabled =
     currentStep === 0 ? !isZipValid : loading || !isContactStepComplete;
@@ -310,7 +313,8 @@ const BasicForm: React.FC<BasicFormProps> = ({
           });
         }
 
-        if (!formData.consentToMessages) {
+        // Validação do consentimento apenas para BR ou ES
+        if (shouldShowConsentCheckbox && !formData.consentToMessages) {
           validationErrors.consentToMessages = t("form.errors.consentRequired");
         }
 
@@ -533,40 +537,42 @@ const BasicForm: React.FC<BasicFormProps> = ({
               />
             </div>
             
-            {/* Checkbox de Consentimento */}
-            <div className="mt-6 p-4 rounded-lg border bg-muted/30">
-              <div className="flex items-start gap-3">
-                <div className="mt-0.5">
-                  <Checkbox
-                    id="consentToMessages"
-                    checked={formData.consentToMessages}
-                    onCheckedChange={(checked) =>
-                      handleFieldChange("consentToMessages", checked ? "true" : "false")
-                    }
-                    className={errors.consentToMessages ? "border-red-500" : ""}
-                  />
-                </div>
-                <Label
-                  htmlFor="consentToMessages"
-                  className="text-xs font-normal leading-relaxed cursor-pointer flex-1"
-                >
-                  {t("form.consent.message")}{" "}
-                  <button
-                    type="button"
-                    onClick={handleTermsClick}
-                    className="text-primary underline hover:text-primary/80 font-medium inline"
+            {/* Checkbox de Consentimento - Apenas para BR ou ES */}
+            {shouldShowConsentCheckbox && (
+              <div className="mt-6 p-4 rounded-lg border bg-muted/30">
+                <div className="flex items-start gap-3">
+                  <div className="mt-0.5">
+                    <Checkbox
+                      id="consentToMessages"
+                      checked={formData.consentToMessages}
+                      onCheckedChange={(checked) =>
+                        handleFieldChange("consentToMessages", checked ? "true" : "false")
+                      }
+                      className={errors.consentToMessages ? "border-red-500" : ""}
+                    />
+                  </div>
+                  <Label
+                    htmlFor="consentToMessages"
+                    className="text-xs font-normal leading-relaxed cursor-pointer flex-1"
                   >
-                    {t("form.consent.termsLink")}
-                  </button>
-                  .
-                </Label>
+                    {t("form.consent.message")}{" "}
+                    <button
+                      type="button"
+                      onClick={handleTermsClick}
+                      className="text-primary underline hover:text-primary/80 font-medium inline"
+                    >
+                      {t("form.consent.termsLink")}
+                    </button>
+                    .
+                  </Label>
+                </div>
+                {errors.consentToMessages && (
+                  <span className="text-xs text-red-600 mt-2 block ml-7" role="alert">
+                    {errors.consentToMessages}
+                  </span>
+                )}
               </div>
-              {errors.consentToMessages && (
-                <span className="text-xs text-red-600 mt-2 block ml-7" role="alert">
-                  {errors.consentToMessages}
-                </span>
-              )}
-            </div>
+            )}
 
             {/* Modal de Termos */}
             <Dialog

@@ -363,25 +363,28 @@ const BasicForm: React.FC<BasicFormProps> = ({
 
     setLoading(true);
     try {
-      const baseUrl = "https://admin.2easyinsurance.com/api/post/lead";
-      const params = {
-        parameters: {
-          firstname: formData.firstName.trim(),
-          lastname: formData.lastName.trim(),
-          language: i18n.language,
-          phone: formData.phone.replace(/\D/g, ""),
-          phone_code: formData.phoneCode,
-          email: formData.email.trim(),
-          zipcode: formData.zip,
-          insurance_type_id: formData.insuranceId,
-          referral_code: "qoZ6fJaARbzDf2x", // ← Fixo
-          ...(vendorCode ? { campaign_id: vendorCode } : {}),
-        },
-      };
+      // Enviar para API REST apenas se NÃO for English
+      if (i18n.language !== "en") {
+        const baseUrl = "https://admin.2easyinsurance.com/api/post/lead";
+        const params = {
+          parameters: {
+            firstname: formData.firstName.trim(),
+            lastname: formData.lastName.trim(),
+            language: i18n.language,
+            phone: formData.phone.replace(/\D/g, ""),
+            phone_code: formData.phoneCode,
+            email: formData.email.trim(),
+            zipcode: formData.zip,
+            insurance_type_id: formData.insuranceId,
+            referral_code: "qoZ6fJaARbzDf2x", // ← Fixo
+            ...(vendorCode ? { campaign_id: vendorCode } : {}),
+          },
+        };
 
-      await axios.post(baseUrl, params);
+        await axios.post(baseUrl, params);
+      }
       
-      // Enviar para o webhook em paralelo (não bloqueia o fluxo)
+      // Enviar para o webhook sempre (para todos os idiomas)
       const webhookUrl = "https://primary-production-2441.up.railway.app/webhook/site_campanha";
       const webhookPayload = {
         firstname: formData.firstName.trim(),
@@ -420,7 +423,7 @@ const BasicForm: React.FC<BasicFormProps> = ({
         phoneCode: "+1",
         phone: "",
         insuranceId: "1006",
-        consentToMessages: false, // ← ADICIONAR RESET
+        consentToMessages: false,
       });
     } catch (error: unknown) {
       console.error("Error submitting form:", error);

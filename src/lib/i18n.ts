@@ -96,6 +96,15 @@ const resources = {
           phoneLength:
             "Phone number must have {{range}} digits for the selected country.",
           insuranceRequired: "Select at least one insurance product.",
+          consentRequired: "You must agree to receive messages to continue.",
+        },
+        consent: {
+          message: "I authorize 2 Easy Insurance LLC to contact me via WhatsApp about health plans and services related to my request. I can cancel at any time",
+          termsLink: "Terms of acceptance",
+          modalTitle: "Messaging Terms – 2 Easy Insurance LLC",
+          modalContent: "By submitting this form, I authorize 2 Easy Insurance LLC to contact me via WhatsApp about my health plan request and related services. Message frequency may vary. Carrier charges may apply. I can cancel at any time by replying \"STOP\". My consent is not a condition of purchase.",
+          modalOk: "Ok",
+          modalCancel: "Cancel",
         },
         countryOptions: {
           usca: "US / Canada (+1)",
@@ -189,6 +198,15 @@ const resources = {
           phoneLength:
             "O telefone deve ter {{range}} dígitos para o país selecionado.",
           insuranceRequired: "Selecione pelo menos um seguro.",
+          consentRequired: "Você deve concordar em receber mensagens para continuar.",
+        },
+        consent: {
+          message: "Autorizo a 2 Easy Insurance LLC a me contatar pelo WhatsApp sobre planos de saúde e serviços relacionados ao meu pedido. Posso cancelar a qualquer momento",
+          termsLink: "Termos de aceite",
+          modalTitle: "Termos de mensagens – 2 Easy Insurance LLC",
+          modalContent: "Ao enviar este formulário, autorizo a 2 Easy Insurance LLC a entrar em contato comigo pelo WhatsApp sobre minha solicitação de plano de saúde e serviços relacionados. A frequência das mensagens pode variar. Podem ser aplicadas tarifas da operadora. Posso cancelar a qualquer momento respondendo \"STOP\". Meu consentimento não é condição para contratar.",
+          modalOk: "Ok",
+          modalCancel: "Cancelar",
         },
         countryOptions: {
           usca: "EUA / Canadá (+1)",
@@ -292,6 +310,15 @@ const resources = {
           phoneLength:
             "El telefono debe tener {{range}} digitos para el pais seleccionado.",
           insuranceRequired: "Selecciona al menos un seguro.",
+          consentRequired: "Debe aceptar recibir mensajes para continuar.",
+        },
+        consent: {
+          message: "Autorizo a 2 Easy Insurance LLC a contactarme por WhatsApp sobre planes de salud y servicios relacionados con mi solicitud. Puedo cancelar en cualquier momento",
+          termsLink: "Términos de aceptación",
+          modalTitle: "Términos de mensajería – 2 Easy Insurance LLC",
+          modalContent: "Al enviar este formulario, autorizo a 2 Easy Insurance LLC a contactarme por WhatsApp sobre mi solicitud de plan de salud y servicios relacionados. La frecuencia de los mensajes puede variar. Pueden aplicarse cargos del operador. Puedo cancelar en cualquier momento respondiendo \"STOP\". Mi consentimiento no es condición para contratar.",
+          modalOk: "Ok",
+          modalCancel: "Cancelar",
         },
         countryOptions: {
           usca: "EUA / Canada (+1)",

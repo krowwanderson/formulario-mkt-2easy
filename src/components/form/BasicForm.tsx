@@ -21,11 +21,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import FormHeader from "./FormHeader";
-import {
-  SendIcon,
-} from "lucide-react";
 import logo from "@/assets/final.png";
 import { trackLead } from "@/utils/facebookPixel";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Dialog } from "@/components/ui/dialog";
 
 interface FormData {
   zip: string;
@@ -35,6 +34,7 @@ interface FormData {
   phoneCode: string;
   phone: string;
   insuranceId: string | null;
+  consentToMessages: boolean; // ← ADICIONAR
 }
 
 type FormErrors = Partial<Record<keyof FormData, string>>;
@@ -139,12 +139,14 @@ const BasicForm: React.FC<BasicFormProps> = ({
     phoneCode: "+1",
     phone: "",
     insuranceId: "1006", // ← Mudar de null para "1006"
+    consentToMessages: false, // ← ADICIONAR RESET
   });
   const [currentStep, setCurrentStep] = useState(initialStep);
   const [errors, setErrors] = useState<FormErrors>({});
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [showTermsModal, setShowTermsModal] = useState(false); // ← ADICIONAR
 
   const cardTitle = wizardTitles[currentStep] ?? "";
 
@@ -161,7 +163,8 @@ const BasicForm: React.FC<BasicFormProps> = ({
       sanitizedPhoneForValidation.length >=
         phoneConfigForValidation.minDigits &&
       sanitizedPhoneForValidation.length <=
-        phoneConfigForValidation.maxDigits
+        phoneConfigForValidation.maxDigits &&
+      formData.consentToMessages // ← ADICIONAR VALIDAÇÃO
   );
   const isPrimaryActionDisabled =
     currentStep === 0 ? !isZipValid : loading || !isContactStepComplete;
@@ -241,6 +244,20 @@ const BasicForm: React.FC<BasicFormProps> = ({
       });
     }
 
+    // Se for consentToMessages, tratar como boolean
+    if (field === "consentToMessages") {
+      setFormData((prev) => ({ 
+        ...prev, 
+        consentToMessages: value === "true" 
+      }));
+      setErrors((prev) => {
+        const next = { ...prev };
+        delete next.consentToMessages;
+        return next;
+      });
+      return;
+    }
+
     setFormData((prev) => ({ ...prev, [field]: nextValue }));
   };
 
@@ -291,6 +308,10 @@ const BasicForm: React.FC<BasicFormProps> = ({
           validationErrors.phone = t("form.errors.phoneLength", {
             range: rangeLabel,
           });
+        }
+
+        if (!formData.consentToMessages) {
+          validationErrors.consentToMessages = t("form.errors.consentRequired");
         }
 
         break;
@@ -356,6 +377,27 @@ const BasicForm: React.FC<BasicFormProps> = ({
 
       await axios.post(baseUrl, params);
       
+      // Enviar para o webhook em paralelo (não bloqueia o fluxo)
+      const webhookUrl = "https://primary-production-2441.up.railway.app/webhook/site_campanha";
+      const webhookPayload = {
+        firstname: formData.firstName.trim(),
+        lastname: formData.lastName.trim(),
+        language: i18n.language,
+        phone: formData.phone.replace(/\D/g, ""),
+        phone_code: formData.phoneCode,
+        email: formData.email.trim(),
+        zipcode: formData.zip,
+        insurance_type_id: formData.insuranceId,
+        referral_code: "qoZ6fJaARbzDf2x",
+        consent_to_messages: formData.consentToMessages, // ← APENAS NO WEBHOOK
+        ...(vendorCode ? { campaign_id: vendorCode } : {}),
+      };
+      
+      // Envio não-bloqueante: se falhar, não afeta o fluxo principal
+      axios.post(webhookUrl, webhookPayload).catch((error) => {
+        console.warn("Webhook failed (non-critical):", error);
+      });
+      
       // Disparar evento Lead do Facebook Pixel
       trackLead({
         firstName: formData.firstName.trim(),
@@ -373,7 +415,8 @@ const BasicForm: React.FC<BasicFormProps> = ({
         email: "",
         phoneCode: "+1",
         phone: "",
-        insuranceId: "1006", // ← Mudar de null para "1006"
+        insuranceId: "1006",
+        consentToMessages: false, // ← ADICIONAR RESET
       });
     } catch (error: unknown) {
       console.error("Error submitting form:", error);
@@ -381,6 +424,21 @@ const BasicForm: React.FC<BasicFormProps> = ({
     } finally {
       setLoading(false);
     }
+  };
+
+  // Funções para o modal
+  const handleTermsClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setShowTermsModal(true);
+  };
+
+  const handleAcceptTerms = () => {
+    handleFieldChange("consentToMessages", "true");
+    setShowTermsModal(false);
+  };
+
+  const handleCancelTerms = () => {
+    setShowTermsModal(false);
   };
 
   const renderStepContent = () => {
@@ -474,6 +532,58 @@ const BasicForm: React.FC<BasicFormProps> = ({
                 error={errors.email}
               />
             </div>
+            
+            {/* Checkbox de Consentimento */}
+            <div className="mt-6 p-4 rounded-lg border bg-muted/30">
+              <div className="flex items-start gap-3">
+                <div className="mt-0.5">
+                  <Checkbox
+                    id="consentToMessages"
+                    checked={formData.consentToMessages}
+                    onCheckedChange={(checked) =>
+                      handleFieldChange("consentToMessages", checked ? "true" : "false")
+                    }
+                    className={errors.consentToMessages ? "border-red-500" : ""}
+                  />
+                </div>
+                <Label
+                  htmlFor="consentToMessages"
+                  className="text-xs font-normal leading-relaxed cursor-pointer flex-1"
+                >
+                  {t("form.consent.message")}{" "}
+                  <button
+                    type="button"
+                    onClick={handleTermsClick}
+                    className="text-primary underline hover:text-primary/80 font-medium inline"
+                  >
+                    {t("form.consent.termsLink")}
+                  </button>
+                  .
+                </Label>
+              </div>
+              {errors.consentToMessages && (
+                <span className="text-xs text-red-600 mt-2 block ml-7" role="alert">
+                  {errors.consentToMessages}
+                </span>
+              )}
+            </div>
+
+            {/* Modal de Termos */}
+            <Dialog
+              open={showTermsModal}
+              onOpenChange={setShowTermsModal}
+              title={t("form.consent.modalTitle")}
+              onConfirm={handleAcceptTerms}
+              onCancel={handleCancelTerms}
+              confirmLabel={t("form.consent.modalOk")}
+              cancelLabel={t("form.consent.modalCancel")}
+            >
+              <div className="space-y-4">
+                <p className="text-sm leading-relaxed text-muted-foreground whitespace-pre-line">
+                  {t("form.consent.modalContent")}
+                </p>
+              </div>
+            </Dialog>
           </>
         );
       case 2:
@@ -487,16 +597,7 @@ const BasicForm: React.FC<BasicFormProps> = ({
                 {successMessage || t("form.messages.whatsappInvite")}
               </p>
             </div>
-            <a
-              href="https://api.whatsapp.com/send/?phone=13213441199"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Button type="button" className="min-w-48 mb-4">
-                <SendIcon className="h-4 w-4" />
-                {t("form.buttons.whatsapp")}
-              </Button>
-            </a>
+            {/* Botão do WhatsApp removido - mensagem será enviada automaticamente */}
           </div>
         );
       default:

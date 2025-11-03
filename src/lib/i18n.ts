@@ -13,6 +13,9 @@ const resources = {
           "Get insurance prices quickly.",
           "Choose the plan that best fits your budget.",
         ],
+        conversational: {
+          zip: "Give me your ZIP Code so we can quote the best plan for you.",
+        },
         zipPrompt: "Enter your ZIP Code to quote plans",
         zipPlaceholder: "Enter your ZIP Code",
         zipButton: "Start Quote",
@@ -24,6 +27,12 @@ const resources = {
           zip: "ZIP Code",
           contact: "Contact Information",
           thanks: "Thank you!",
+        },
+        conversational: {
+          zip: "Give me your ZIP Code so we can quote the best plan for you.",
+          name: "Now tell me your name.",
+          phone: "What's your phone number?",
+          email: "To finish, give me your main email.",
         },
         messages: {
           success: "We will contact you soon.",
@@ -125,6 +134,9 @@ const resources = {
           "Obtenha preços de seguro rapidamente.",
           "Escolha o plano que cabe no seu bolso.",
         ],
+        conversational: {
+          zip: "Me passe seu ZIP Code para cotarmos o melhor plano pra você.",
+        },
         zipPrompt: "Digite seu ZIP Code para cotar os planos",
         zipPlaceholder: "Digite seu ZIP Code",
         zipButton: "Iniciar cotação",
@@ -136,6 +148,12 @@ const resources = {
           zip: "ZIP Code",
           contact: "Informações de contato",
           thanks: "Obrigado!",
+        },
+        conversational: {
+          zip: "Me passe seu ZIP Code para cotarmos o melhor plano pra você.",
+          name: "Agora me diga seu nome.",
+          phone: "Qual seu telefone?",
+          email: "Para finalizar, me passe seu e-mail principal.",
         },
         messages: {
           success: "Entraremos em contato em breve.",
@@ -237,6 +255,9 @@ const resources = {
           "Obten precios de seguro rapidamente.",
           "Elige el plan que mejor se ajuste a tu presupuesto.",
         ],
+        conversational: {
+          zip: "Dame tu código ZIP para cotizar el mejor plan para ti.",
+        },
         zipPrompt: "Ingresa tu codigo ZIP para cotizar los planes",
         zipPlaceholder: "Ingresa tu codigo ZIP",
         zipButton: "Iniciar cotizacion",
@@ -248,6 +269,12 @@ const resources = {
           zip: "Codigo ZIP",
           contact: "Informacion de contacto",
           thanks: "Gracias!",
+        },
+        conversational: {
+          zip: "Dame tu código ZIP para cotizar el mejor plan para ti.",
+          name: "Ahora dime tu nombre.",
+          phone: "¿Cuál es tu teléfono?",
+          email: "Para finalizar, dame tu correo electrónico principal.",
         },
         messages: {
           success: "Nos pondremos en contacto pronto.",
@@ -316,7 +343,7 @@ const resources = {
           message: "Autorizo a 2 Easy Insurance LLC a contactarme por WhatsApp sobre planes de salud y servicios relacionados con mi solicitud. Puedo cancelar en cualquier momento",
           termsLink: "Términos de aceptación",
           modalTitle: "Términos de mensajería – 2 Easy Insurance LLC",
-          modalContent: "Al enviar este formulario, autorizo a 2 Easy Insurance LLC a contactarme por WhatsApp sobre mi solicitud de plan de salud y servicios relacionados. La frecuencia de los mensajes puede variar. Pueden aplicarse cargos del operador. Puedo cancelar en cualquier momento respondiendo \"STOP\". Mi consentimiento no es condición para contratar.",
+          modalContent: "Al enviar este formulario, autorizo a 2 Easy Insurance LLC a contactarme por WhatsApp sobre mi solicitud de plan de salud y serviços relacionados. La frecuencia de los mensajes puede variar. Pueden aplicarse cargos del operador. Puedo cancelar en cualquier momento respondiendo \"STOP\". Mi consentimiento no es condición para contratar.",
           modalOk: "Ok",
           modalCancel: "Cancelar",
         },

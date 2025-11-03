@@ -13,7 +13,7 @@ import {
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 import logo from "@/assets/2easyicon.svg";
-import family from "@/assets/family.svg";
+
 
 import ambetterLogo from "@/assets/ambetter.svg";
 import blueLogo from "@/assets/blue.svg";
@@ -60,93 +60,87 @@ const LandingPage: React.FC<LandingPageProps> = ({
     onZipChange(sanitized);
   };
 
-  const benefits = t("landing.bullets", {
-    returnObjects: true,
-  }) as string[];
-
   return (
     <div className="item flex min-h-screen flex-col justify-between bg-white">
       <header className="mx-auto flex max-md:flex-col h-20 w-full max-w-7xl items-center justify-between px-6 md:px-16 max-md:mt-5">
         <a
           href="https://2easyinsurance.com"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noreferrer"
         >
           <img src={logo} alt="2easy Insurance logo" className="h-10 w-auto" />
         </a>
         <LanguageSwitcher />
       </header>
 
-      <main className="mx-auto flex w-full max-w-7xl flex-col gap-12 px-6 py-6 md:flex-row md:items-center md:justify-between md:px-16 md:py-16">
-        <section className="flex max-w-xl flex-col gap-10 pt-10 md:pt-0">
-          <div>
-            <h1 className="text-3xl font-bold text-[#461AA5] md:text-4xl">
-              {t("landing.heroTitle")}
-            </h1>
-            <p className="mt-4 text-base text-[#2D2A45] md:text-lg">
-              {t("landing.heroSubtitle")}
-            </p>
-          </div>
+      <main className="mx-auto flex w-full max-w-2xl flex-col items-center justify-center px-6 py-12 md:py-16">
+        {/* Título centralizado no topo */}
+        <p className="text-lg text-primary text-center mb-6">
+          {t("landing.conversational.zip")}
+        </p>
 
-          <ul className="flex flex-col gap-3 text-sm text-[#2D2A45] md:text-base">
-            {benefits.map((item) => (
-              <li key={item} className="flex items-start gap-2">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 text-[#51C37A]" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-
-          <div className="rounded-2xl border border-[#E6E0F8] bg-[#F8F6FF] p-6 shadow-sm">
-            <p className="text-sm font-semibold text-[#461AA5] md:text-base">
-              {t("landing.zipPrompt")}
-            </p>
-            <form
-              className="mt-4 flex flex-col gap-3 sm:flex-row"
-              onSubmit={(event) => {
-                event.preventDefault();
-                onSubmitZip();
-              }}
+        {/* Input ZIP CODE centralizado */}
+        <div className="w-full max-w-md mb-8">
+          <form
+            onSubmit={(event) => {
+              event.preventDefault();
+              onSubmitZip();
+            }}
+          >
+            <Input
+              type="text"
+              inputMode="numeric"
+              pattern="\d*"
+              value={zipValue}
+              onChange={(event) => handleZipChange(event.target.value)}
+              placeholder={t("landing.zipPlaceholder")}
+              maxLength={5}
+              className={`h-12 rounded-lg border-2 bg-white text-base shadow-sm placeholder:text-[#9C90CC] focus-visible:ring-[#461AA5] ${
+                zipError ? "border-red-500 focus-visible:ring-red-500" : ""
+              }`}
+            />
+            {zipError && (
+              <p className="mt-1 text-xs text-red-600 text-center" role="alert">
+                {zipError}
+              </p>
+            )}
+            <Button
+              type="submit"
+              className="w-full mt-4 h-12 rounded-lg bg-[#461AA5] text-base font-semibold hover:bg-[#37158A]"
+              disabled={isSubmitting || zipValue.length !== 5}
             >
-              <div className="flex-1">
-                <Input
-                  type="text"
-                  inputMode="numeric"
-                  pattern="\d*"
-                  value={zipValue}
-                  onChange={(event) => handleZipChange(event.target.value)}
-                  placeholder={t("landing.zipPlaceholder")}
-                  maxLength={5}
-                  className={`h-12 rounded-lg border-2 bg-white text-base shadow-sm placeholder:text-[#9C90CC] focus-visible:ring-[#461AA5] ${
-                    zipError ? "border-red-500 focus-visible:ring-red-500" : ""
-                  }`}
-                />
-                {zipError && (
-                  <p className="mt-1 text-xs text-red-600" role="alert">
-                    {zipError}
-                  </p>
-                )}
-              </div>
-              <Button
-                type="submit"
-                className="h-12 rounded-lg bg-[#461AA5] px-6 text-base font-semibold hover:bg-[#37158A]"
-                disabled={isSubmitting}
-              >
-                {isSubmitting
-                  ? t("landing.zipButtonLoading")
-                  : t("landing.zipButton")}
-              </Button>
-            </form>
-          </div>
-        </section>
+              {isSubmitting
+                ? t("landing.zipButtonLoading")
+                : t("landing.zipButton")}
+            </Button>
+          </form>
+        </div>
 
-        <aside className="flex w-full justify-center md:w-auto max-md:hidden">
-          <img
-            src={family}
-            alt={t("landing.familyAlt")}
-            className="max-h-[420px] w-full max-w-md object-contain"
-          />
-        </aside>
+        {/* Textos abaixo do campo ZIP CODE */}
+        <div className="w-full max-w-2xl space-y-4 text-center">
+          <h2 className="text-2xl font-bold text-[#461AA5] md:text-3xl">
+            {t("landing.heroTitle")}
+          </h2>
+          
+          <p className="text-base text-[#2D2A45] md:text-lg">
+            {t("landing.heroSubtitle")}
+          </p>
+
+          <ul className="flex flex-col gap-3 text-sm text-[#2D2A45] md:text-base mt-6">
+            <li className="flex items-start justify-center gap-2">
+              <CheckCircle2 className="mt-0.5 h-5 w-5 text-[#51C37A] flex-shrink-0" />
+              <span>{t("landing.bullets.0")}</span>
+            </li>
+            <li className="flex items-start justify-center gap-2">
+              <CheckCircle2 className="mt-0.5 h-5 w-5 text-[#51C37A] flex-shrink-0" />
+              <span>{t("landing.bullets.1")}</span>
+            </li>
+            <li className="flex items-start justify-center gap-2">
+              <CheckCircle2 className="mt-0.5 h-5 w-5 text-[#51C37A] flex-shrink-0" />
+              <span>{t("landing.bullets.2")}</span>
+            </li>
+          </ul>
+        </div>
       </main>
 
       <footer className="mt-auto bg-[#461AA5] py-6">

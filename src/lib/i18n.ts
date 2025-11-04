@@ -5,20 +5,14 @@ const resources = {
   en: {
     translation: {
       landing: {
-        heroTitle: "Find the insurance plan that connects with you!",
-        heroSubtitle:
-          "Compare offers in just a few clicks and discover the ideal plan with experts in protection and savings.",
-        bullets: [
-          "Compare quotes from several insurance providers.",
-          "Get insurance prices quickly.",
-          "Choose the plan that best fits your budget.",
-        ],
+        heroTitle: "These are the 3 Health Plans with the Best Cost-Benefit that Brazilians Most Seek in Open Enrollment When They Want to SAVE and Guarantee Full Coverage",
+        heroSubtitle: "Tell us what you want most in your plan, and in less than 2 minutes we'll send you the best options for your profile. (100% Free)",
         conversational: {
           zip: "Give me your ZIP Code so we can quote the best plan for you.",
         },
         zipPrompt: "Enter your ZIP Code to quote plans",
         zipPlaceholder: "Enter your ZIP Code",
-        zipButton: "Start Quote",
+        zipButton: "I want to see the best plan for me.",
         zipButtonLoading: "Loading...",
         familyAlt: "Happy family protected by insurance",
       },
@@ -126,20 +120,14 @@ const resources = {
   br: {
     translation: {
       landing: {
-        heroTitle: "Encontre o seguro mais conectado com você!",
-        heroSubtitle:
-          "Compare ofertas em poucos cliques e descubra o plano ideal com quem entende de proteção e economia.",
-        bullets: [
-          "Compare cotações de diversas seguradoras.",
-          "Obtenha preços de seguro rapidamente.",
-          "Escolha o plano que cabe no seu bolso.",
-        ],
+        heroTitle: "Esses são os 3 Planos de Saúde com Melhor Custo-Benefício que Brasileiros Mais Procuram no Open Enrollment Quando Querem ECONOMIZAR e Garantir Cobertura Total",
+        heroSubtitle: "Nos fale o que você mais quer no seu plano, e em menos de 2 minutos enviaremos as melhores opções para o seu perfil. (100% Gratuito)",
         conversational: {
           zip: "Me passe seu ZIP Code para cotarmos o melhor plano pra você.",
         },
         zipPrompt: "Digite seu ZIP Code para cotar os planos",
         zipPlaceholder: "Digite seu ZIP Code",
-        zipButton: "Iniciar cotação",
+        zipButton: "Quero ver o melhor plano para mim.",
         zipButtonLoading: "Carregando...",
         familyAlt: "Família feliz protegida por um seguro",
       },
@@ -247,20 +235,14 @@ const resources = {
   es: {
     translation: {
       landing: {
-        heroTitle: "Encuentra el seguro que se conecta contigo!",
-        heroSubtitle:
-          "Compara ofertas en pocos clics y descubre el plan ideal con expertos en proteccion y ahorro.",
-        bullets: [
-          "Compara cotizaciones de varias aseguradoras.",
-          "Obten precios de seguro rapidamente.",
-          "Elige el plan que mejor se ajuste a tu presupuesto.",
-        ],
+        heroTitle: "Estos son los 3 Planes de Salud con Mejor Relación Calidad-Precio que los Brasileños Más Buscan en Open Enrollment Cuando Quieren AHORRAR y Garantizar Cobertura Total",
+        heroSubtitle: "Díganos qué es lo que más desea en su plan, y en menos de 2 minutos le enviaremos las mejores opciones para su perfil. (100% Gratis)",
         conversational: {
           zip: "Dame tu código ZIP para cotizar el mejor plan para ti.",
         },
         zipPrompt: "Ingresa tu codigo ZIP para cotizar los planes",
         zipPlaceholder: "Ingresa tu codigo ZIP",
-        zipButton: "Iniciar cotizacion",
+        zipButton: "Quiero ver el mejor plan para mí.",
         zipButtonLoading: "Cargando...",
         familyAlt: "Familia feliz protegida por un seguro",
       },

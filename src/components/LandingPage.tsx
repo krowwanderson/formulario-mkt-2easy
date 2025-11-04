@@ -117,29 +117,28 @@ const LandingPage: React.FC<LandingPageProps> = ({
         </div>
 
         {/* Textos abaixo do campo ZIP CODE */}
-        <div className="w-full max-w-2xl space-y-4 text-center">
-          <h2 className="text-2xl font-bold text-[#461AA5] md:text-3xl">
-            {t("landing.heroTitle")}
-          </h2>
+        <div className="w-full max-w-2xl space-y-6 text-center">
+          <h2 
+            className="text-1xl font-bold text-[#461AA5] md:text-3xl leading-relaxed"
+            dangerouslySetInnerHTML={{ 
+              __html: t("landing.heroTitle")
+                .replace(/os 3 Planos de Saúde/g, '<span class="underline decoration-2">os 3 Planos de Saúde</span>')
+                .replace(/Custo-Benefício/g, '<span class="underline decoration-2">Custo-Benefício</span>')
+                .replace(/ECONOMIZAR/g, '<span class="underline decoration-2">ECONOMIZAR</span>')
+                .replace(/Cobertura Total/g, '<span class="underline decoration-2">Cobertura Total</span>')
+                .replace(/the 3 Health Plans/g, '<span class="underline decoration-2">the 3 Health Plans</span>')
+                .replace(/Cost-Benefit/g, '<span class="underline decoration-2">Cost-Benefit</span>')
+                .replace(/SAVE/g, '<span class="underline decoration-2">SAVE</span>')
+                .replace(/Full Coverage/g, '<span class="underline decoration-2">Full Coverage</span>')
+                .replace(/los 3 Planes de Salud/g, '<span class="underline decoration-2">los 3 Planes de Salud</span>')
+                .replace(/Relación Calidad-Precio/g, '<span class="underline decoration-2">Relación Calidad-Precio</span>')
+                .replace(/AHORRAR/g, '<span class="underline decoration-2">AHORRAR</span>')
+            }}
+          />
           
           <p className="text-base text-[#2D2A45] md:text-lg">
             {t("landing.heroSubtitle")}
           </p>
-
-          <ul className="flex flex-col gap-3 text-sm text-[#2D2A45] md:text-base mt-6">
-            <li className="flex items-start justify-center gap-2">
-              <CheckCircle2 className="mt-0.5 h-5 w-5 text-[#51C37A] flex-shrink-0" />
-              <span>{t("landing.bullets.0")}</span>
-            </li>
-            <li className="flex items-start justify-center gap-2">
-              <CheckCircle2 className="mt-0.5 h-5 w-5 text-[#51C37A] flex-shrink-0" />
-              <span>{t("landing.bullets.1")}</span>
-            </li>
-            <li className="flex items-start justify-center gap-2">
-              <CheckCircle2 className="mt-0.5 h-5 w-5 text-[#51C37A] flex-shrink-0" />
-              <span>{t("landing.bullets.2")}</span>
-            </li>
-          </ul>
         </div>
       </main>
 

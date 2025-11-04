@@ -29,6 +29,7 @@ export interface LandingPageProps {
   onSubmitZip: () => void;
   zipError?: string;
   isSubmitting?: boolean;
+  variant?: "default" | "lp02" | "lp03";
 }
 
 const partnerLogos = [
@@ -48,6 +49,7 @@ const LandingPage: React.FC<LandingPageProps> = ({
   onSubmitZip,
   zipError,
   isSubmitting,
+  variant = "default",
 }) => {
   const { t } = useTranslation();
   const autoplay = React.useRef(
@@ -58,6 +60,19 @@ const LandingPage: React.FC<LandingPageProps> = ({
     const sanitized = value.replace(/\D/g, "").slice(0, 5);
     onZipChange(sanitized);
   };
+
+  // Definir as chaves de tradução baseado na variant
+  const heroTitleKey = variant === "lp02" 
+    ? "landing.heroTitleLp02" 
+    : variant === "lp03" 
+    ? "landing.heroTitleLp03" 
+    : "landing.heroTitle";
+
+  const heroSubtitleKey = variant === "lp02" 
+    ? "landing.heroSubtitleLp02" 
+    : variant === "lp03" 
+    ? "landing.heroSubtitleLp03" 
+    : "landing.heroSubtitle";
 
   return (
     <div className="item flex min-h-screen flex-col justify-between bg-white">
@@ -120,7 +135,7 @@ const LandingPage: React.FC<LandingPageProps> = ({
           <h2 
             className="text-1xl font-bold text-[#461AA5] md:text-3xl leading-relaxed"
             dangerouslySetInnerHTML={{ 
-              __html: t("landing.heroTitle")
+              __html: t(heroTitleKey)
                 .replace(/os 3 Planos de Saúde/g, '<span class="underline decoration-2">os 3 Planos de Saúde</span>')
                 .replace(/Custo-Benefício/g, '<span class="underline decoration-2">Custo-Benefício</span>')
                 .replace(/ECONOMIZAR/g, '<span class="underline decoration-2">ECONOMIZAR</span>')
@@ -132,11 +147,17 @@ const LandingPage: React.FC<LandingPageProps> = ({
                 .replace(/los 3 Planes de Salud/g, '<span class="underline decoration-2">los 3 Planes de Salud</span>')
                 .replace(/Relación Calidad-Precio/g, '<span class="underline decoration-2">Relación Calidad-Precio</span>')
                 .replace(/AHORRAR/g, '<span class="underline decoration-2">AHORRAR</span>')
+                .replace(/planos de saúde com o melhor custo-benefício/g, '<span class="underline decoration-2">planos de saúde com o melhor custo-benefício</span>')
+                .replace(/health plans with the best cost-benefit/g, '<span class="underline decoration-2">health plans with the best cost-benefit</span>')
+                .replace(/planes de salud con la mejor relación calidad-precio/g, '<span class="underline decoration-2">planes de salud con la mejor relación calidad-precio</span>')
+                .replace(/plano de saúde com o melhor custo-benefício/g, '<span class="underline decoration-2">plano de saúde com o melhor custo-benefício</span>')
+                .replace(/health plan with the best cost-benefit/g, '<span class="underline decoration-2">health plan with the best cost-benefit</span>')
+                .replace(/plan de salud con la mejor relación calidad-precio/g, '<span class="underline decoration-2">plan de salud con la mejor relación calidad-precio</span>')
             }}
           />
           
           <p className="text-base text-[#2D2A45] md:text-lg">
-            {t("landing.heroSubtitle")}
+            {t(heroSubtitleKey)}
           </p>
         </div>
       </main>

@@ -20,6 +20,14 @@ function App() {
       .filter(Boolean);
   }, [location.pathname]);
 
+  // Detectar a variant da landing page
+  const landingVariant = useMemo(() => {
+    const path = location.pathname;
+    if (path === "/planos-de-saude-com-melhor-custo-beneficio") return "lp02";
+    if (path === "/melhor-plano-para-sua-familia") return "lp03";
+    return "default";
+  }, [location.pathname]);
+
   const referralCode = pathSegments[0] ?? null;
   const { referral } = useReferralAgent({ referralCode });
 
@@ -55,6 +63,7 @@ function App() {
       onZipChange={handleZipChange}
       onSubmitZip={handleZipSubmit}
       zipError={zipError}
+      variant={landingVariant}
     />
   );
 }

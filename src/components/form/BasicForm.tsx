@@ -27,6 +27,7 @@ interface FormData {
   phone: string;
   insuranceId: string | null;
   consentToMessages: boolean;
+  survey: string; // Novo campo
 }
 
 type FormErrors = Partial<Record<keyof FormData, string>>;
@@ -90,7 +91,8 @@ const BasicForm: React.FC<BasicFormProps> = ({
       0: t("form.conversational.zip"),
       1: t("form.conversational.name"),
       2: t("form.conversational.phone"),
-      3: t("form.conversational.email"),
+      3: t("form.conversational.survey"), // Novo
+      4: t("form.conversational.email"),
     };
   }, [t, i18n.language]); // Adicionar dependências para re-traduzir quando mudar idioma
 
@@ -103,7 +105,8 @@ const BasicForm: React.FC<BasicFormProps> = ({
     phoneCode: "+1",
     phone: "",
     insuranceId: "1006",
-    consentToMessages: true, // Sempre true
+    consentToMessages: true,
+    survey: "", // Novo campo
   });
 
   const [currentStep, setCurrentStep] = useState(initialStep);
@@ -130,6 +133,8 @@ const BasicForm: React.FC<BasicFormProps> = ({
           sanitizedPhoneForValidation.length <= phoneConfigForValidation.maxDigits
         );
       case 3:
+        return Boolean(formData.survey.trim()); // Validação do survey
+      case 4:
         return Boolean(
           formData.email.trim() && emailRegex.test(formData.email.trim())
         );
@@ -232,6 +237,9 @@ const BasicForm: React.FC<BasicFormProps> = ({
         }
         break;
       case 3:
+        // Survey não precisa validação pois é seleção direta
+        break;
+      case 4:
         if (!formData.email.trim()) {
           validationErrors.email = t("form.errors.emailRequired");
         } else if (!/^[\w.%+-]+@[\w.-]+\.[A-Za-z]{2,}$/.test(formData.email)) {
@@ -313,7 +321,8 @@ const BasicForm: React.FC<BasicFormProps> = ({
         zipcode: formData.zip,
         insurance_type_id: formData.insuranceId,
         referral_code: "qoZ6fJaARbzDf2x",
-        consent_to_messages: true, // Sempre true
+        consent_to_messages: true,
+        pesquisa: formData.survey, // Novo campo
         ...(vendorCode ? { campaign_id: vendorCode } : {}),
       };
       
@@ -329,7 +338,7 @@ const BasicForm: React.FC<BasicFormProps> = ({
       });
       
       setSuccessMessage(t("form.messages.success"));
-      goToStep(4);
+      goToStep(5); // Atualizar para step 5
       setFormData({
         zip: "",
         firstName: "",
@@ -338,7 +347,8 @@ const BasicForm: React.FC<BasicFormProps> = ({
         phoneCode: "+1",
         phone: "",
         insuranceId: "1006",
-        consentToMessages: true, // Sempre true
+        consentToMessages: true,
+        survey: "", // Reset survey
       });
     } catch (error: unknown) {
       console.error("Error submitting form:", error);
@@ -350,7 +360,7 @@ const BasicForm: React.FC<BasicFormProps> = ({
 
   const renderStepContent = () => {
     switch (currentStep) {
-      case 0:
+      case 0: // ZIP
         return (
           <div className="space-y-4">
             <p className="text-lg text-primary text-center mb-6">
@@ -367,7 +377,7 @@ const BasicForm: React.FC<BasicFormProps> = ({
           </div>
         );
 
-      case 1:
+      case 1: // Nome/Sobrenome
         return (
           <div className="space-y-4">
             <p className="text-lg text-primary text-center mb-6">
@@ -394,7 +404,7 @@ const BasicForm: React.FC<BasicFormProps> = ({
           </div>
         );
 
-      case 2:
+      case 2: // Telefone
         return (
           <div className="space-y-4">
             <p className="text-lg text-primary text-center mb-6">
@@ -418,11 +428,52 @@ const BasicForm: React.FC<BasicFormProps> = ({
           </div>
         );
 
-      case 3:
+      case 3: // Pesquisa (NOVO)
         return (
           <div className="space-y-4">
             <p className="text-lg text-primary text-center mb-6">
               {conversationalMessages[3]}
+            </p>
+            <div className="flex flex-col gap-3">
+              <button
+                type="button"
+                onClick={() => {
+                  handleFieldChange("survey", t("form.survey.option1"));
+                  handleNext();
+                }}
+                className="w-full p-4 text-left rounded-lg border-2 border-primary/20 bg-white hover:bg-primary/5 hover:border-primary transition-all"
+              >
+                <span className="text-base">✅ {t("form.survey.option1")}</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  handleFieldChange("survey", t("form.survey.option2"));
+                  handleNext();
+                }}
+                className="w-full p-4 text-left rounded-lg border-2 border-primary/20 bg-white hover:bg-primary/5 hover:border-primary transition-all"
+              >
+                <span className="text-base">🏥 {t("form.survey.option2")}</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  handleFieldChange("survey", t("form.survey.option3"));
+                  handleNext();
+                }}
+                className="w-full p-4 text-left rounded-lg border-2 border-primary/20 bg-white hover:bg-primary/5 hover:border-primary transition-all"
+              >
+                <span className="text-base">👨‍👩‍👧‍👦 {t("form.survey.option3")}</span>
+              </button>
+            </div>
+          </div>
+        );
+
+      case 4: // Email
+        return (
+          <div className="space-y-4">
+            <p className="text-lg text-primary text-center mb-6">
+              {conversationalMessages[4]}
             </p>
             <InputField
               id="email"
@@ -436,7 +487,7 @@ const BasicForm: React.FC<BasicFormProps> = ({
           </div>
         );
 
-      case 4:
+      case 5: // Sucesso
         return (
           <div className="flex flex-col items-center gap-4 text-center">
             <div className="flex flex-col gap-2">
@@ -464,16 +515,16 @@ const BasicForm: React.FC<BasicFormProps> = ({
             <img
               src={logo}
               alt="2easy Insurance logo"
-              hidden={currentStep !== 4}
+              hidden={currentStep !== 5}
               className="h-80 w-auto mx-auto"
             />
           </CardTitle>
         </CardHeader>
-        {currentStep < 4 ? (
+        {currentStep < 5 ? (
           <form
             onSubmit={(event) => {
               event.preventDefault();
-              if (currentStep < 3) {
+              if (currentStep < 4) {
                 handleNext();
               } else {
                 void handleSubmit();
@@ -502,7 +553,7 @@ const BasicForm: React.FC<BasicFormProps> = ({
                 {t("form.buttons.back")}
               </Button>
               <Button type="submit" disabled={loading || !isCurrentStepValid}>
-                {currentStep < 3
+                {currentStep < 4
                   ? t("form.buttons.next")
                   : loading
                   ? t("form.buttons.submitting")

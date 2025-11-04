@@ -7,6 +7,10 @@ const resources = {
       landing: {
         heroTitle: "These are the 3 Health Plans with the Best Cost-Benefit that Brazilians Most Seek in Open Enrollment When They Want to SAVE and Guarantee Full Coverage",
         heroSubtitle: "Tell us what you want most in your plan, and in less than 2 minutes we'll send you the best options for your profile. (100% Free)",
+        heroTitleLp02: "Want to discover the health plans with the best cost-benefit for Brazilians during Open Enrollment?",
+        heroSubtitleLp02: "Enter your Zip Code below, then your name and number so we can send you the best options for your profile in less than 2 minutes. (100% Free)",
+        heroTitleLp03: "Looking for a health plan with the best cost-benefit for you and your family during Open Enrollment?",
+        heroSubtitleLp03: "Enter your Zip Code below, then your name and number so we can send you the best options for your profile in less than 2 minutes. (100% Free)",
         conversational: {
           zip: "Give me your ZIP Code so we can quote the best plan for you.",
         },
@@ -26,7 +30,13 @@ const resources = {
           zip: "Give me your ZIP Code so we can quote the best plan for you.",
           name: "Now tell me your name.",
           phone: "What's your phone number?",
+          survey: "What best represents your situation today?",
           email: "To finish, give me your main email.",
+        },
+        survey: {
+          option1: "I want to save on my current plan",
+          option2: "I don't have a plan and need coverage",
+          option3: "I want to find an ideal plan for my family",
         },
         messages: {
           success: "We will contact you soon.",
@@ -122,6 +132,10 @@ const resources = {
       landing: {
         heroTitle: "Esses são os 3 Planos de Saúde com Melhor Custo-Benefício que Brasileiros Mais Procuram no Open Enrollment Quando Querem ECONOMIZAR e Garantir Cobertura Total",
         heroSubtitle: "Nos fale o que você mais quer no seu plano, e em menos de 2 minutos enviaremos as melhores opções para o seu perfil. (100% Gratuito)",
+        heroTitleLp02: "Quer descobrir os planos de saúde com o melhor custo-benefício para brasileiros durante a Inscrição Aberta/Open Enrollment?",
+        heroSubtitleLp02: "Coloque seu Zip Code abaixo, e depois seu nome e número para enviarmos as melhores opções para o seu perfil, em menos de 2 minutos. (100% Gratuito)",
+        heroTitleLp03: "Procurando um plano de saúde com o melhor custo-benefício para você e para sua família durante a Inscrição Aberta/Open Enrollment?",
+        heroSubtitleLp03: "Coloque seu Zip Code abaixo, e depois seu nome e número para enviarmos as melhores opções para o seu perfil, em menos de 2 minutos. (100% Gratuito)",
         conversational: {
           zip: "Me passe seu ZIP Code para cotarmos o melhor plano pra você.",
         },
@@ -139,15 +153,21 @@ const resources = {
         },
         conversational: {
           zip: "Me passe seu ZIP Code para cotarmos o melhor plano pra você.",
-          name: "Agora me diga seu nome.",
+          name: "Como podemos te chamar?",
           phone: "Qual seu telefone?",
+          survey: "O que mais representa sua situação hoje?",
           email: "Para finalizar, me passe seu e-mail principal.",
         },
+        survey: {
+          option1: "Quero economizar no meu plano atual",
+          option2: "Estou sem plano e preciso de cobertura",
+          option3: "Quero encontrar um plano ideal pra minha família",
+        },
         messages: {
-          success: "Entraremos em contato em breve.",
+          success: "Nossa equipe está analisando agora mesmo suas respostas! E em até 2 minutos você receberá as melhores opções de plano para seu perfil.",
           submitError: "Não foi possível enviar o formulário. Tente novamente.",
-          thankYouTitle: "Obrigado por compartilhar suas informações!",
-          thankYouSubtitle: "Entraremos em contato em breve.",
+          thankYouTitle: "Obrigado!",
+          thankYouSubtitle: "Nossa equipe está analisando agora mesmo suas respostas! E em até 2 minutos você receberá as melhores opções de plano para seu perfil.",
           whatsappInvite:
             "Um de nossos agentes está preparando uma cotação personalizada e falará com você em breve.",
           restart: "Enviar outra resposta",
@@ -237,7 +257,11 @@ const resources = {
       landing: {
         heroTitle: "Estos son los 3 Planes de Salud con Mejor Relación Calidad-Precio que los Brasileños Más Buscan en Open Enrollment Cuando Quieren AHORRAR y Garantizar Cobertura Total",
         heroSubtitle: "Díganos qué es lo que más desea en su plan, y en menos de 2 minutos le enviaremos las mejores opciones para su perfil. (100% Gratis)",
-        conversational: {
+        heroTitleLp02: "¿Quieres descubrir los planes de salud con la mejor relación calidad-precio para brasileños durante la Inscripción Abierta/Open Enrollment?",
+        heroSubtitleLp02: "Ingresa tu Código ZIP abajo, luego tu nombre y número para enviarte las mejores opciones para tu perfil en menos de 2 minutos. (100% Gratis)",
+        heroTitleLp03: "¿Buscas un plan de salud con la mejor relación calidad-precio para ti y tu familia durante la Inscripción Abierta/Open Enrollment?",
+        heroSubtitleLp03: "Ingresa tu Código ZIP abajo, luego tu nombre y número para enviarte las mejores opciones para tu perfil en menos de 2 minutos. (100% Gratis)",
+       conversational: {
           zip: "Dame tu código ZIP para cotizar el mejor plan para ti.",
         },
         zipPrompt: "Ingresa tu codigo ZIP para cotizar los planes",
@@ -256,7 +280,13 @@ const resources = {
           zip: "Dame tu código ZIP para cotizar el mejor plan para ti.",
           name: "Ahora dime tu nombre.",
           phone: "¿Cuál es tu teléfono?",
+          survey: "¿Qué representa mejor tu situación hoy?",
           email: "Para finalizar, dame tu correo electrónico principal.",
+        },
+        survey: {
+          option1: "Quiero ahorrar en mi plan actual",
+          option2: "Estoy sin plan y necesito cobertura",
+          option3: "Quiero encontrar un plan ideal para mi familia",
         },
         messages: {
           success: "Nos pondremos en contacto pronto.",

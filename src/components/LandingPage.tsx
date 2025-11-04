@@ -1,6 +1,5 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { CheckCircle2 } from "lucide-react";
 import Autoplay from "embla-carousel-autoplay";
 
 import { Button } from "@/components/ui/button";

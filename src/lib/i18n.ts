@@ -12,7 +12,7 @@ const resources = {
         heroTitleLp03: "Looking for a health plan with the best cost-benefit for you and your family during Open Enrollment?",
         heroSubtitleLp03: "Enter your Zip Code below, then your name and number so we can send you the best options for your profile in less than 2 minutes. (100% Free)",
         conversational: {
-          zip: "Give me your ZIP Code so we can quote the best plan for you.",
+          zip: "",
         },
         zipPrompt: "Enter your ZIP Code to quote plans",
         zipPlaceholder: "Enter your ZIP Code",
@@ -27,7 +27,7 @@ const resources = {
           thanks: "Thank you!",
         },
         conversational: {
-          zip: "Give me your ZIP Code so we can quote the best plan for you.",
+          zip: "",
           name: "Now tell me your name.",
           phone: "What's your phone number?",
           survey: "What best represents your situation today?",
@@ -132,12 +132,12 @@ const resources = {
       landing: {
         heroTitle: "Esses são os 3 Planos de Saúde com Melhor Custo-Benefício que Brasileiros Mais Procuram no Open Enrollment Quando Querem ECONOMIZAR e Garantir Cobertura Total",
         heroSubtitle: "Nos fale o que você mais quer no seu plano, e em menos de 2 minutos enviaremos as melhores opções para o seu perfil. (100% Gratuito)",
-        heroTitleLp02: "Quer descobrir os planos de saúde com o melhor custo-benefício para brasileiros durante a Inscrição Aberta/Open Enrollment?",
+        heroTitleLp02: "Quer descobrir os planos de saúde com o melhor custo-benefício para brasileiros durante o Open Enrollment?",
         heroSubtitleLp02: "Coloque seu Zip Code abaixo, e depois seu nome e número para enviarmos as melhores opções para o seu perfil, em menos de 2 minutos. (100% Gratuito)",
-        heroTitleLp03: "Procurando um plano de saúde com o melhor custo-benefício para você e para sua família durante a Inscrição Aberta/Open Enrollment?",
+        heroTitleLp03: "Procurando um plano de saúde com o melhor custo-benefício para você e para sua família durante o Open Enrollment?",
         heroSubtitleLp03: "Coloque seu Zip Code abaixo, e depois seu nome e número para enviarmos as melhores opções para o seu perfil, em menos de 2 minutos. (100% Gratuito)",
         conversational: {
-          zip: "Me passe seu ZIP Code para cotarmos o melhor plano pra você.",
+          zip: "",
         },
         zipPrompt: "Digite seu ZIP Code para cotar os planos",
         zipPlaceholder: "Digite seu ZIP Code",
@@ -154,9 +154,9 @@ const resources = {
         conversational: {
           zip: "Me passe seu ZIP Code para cotarmos o melhor plano pra você.",
           name: "Como podemos te chamar?",
-          phone: "Qual seu telefone?",
+          phone: "Qual número podemos usar para enviar suas opções de personalizadas de plano?",
           survey: "O que mais representa sua situação hoje?",
-          email: "Para finalizar, me passe seu e-mail principal.",
+          email: "Agora, só me fala seu melhor e-mail pra garantir que você receba tudo certinho.",
         },
         survey: {
           option1: "Quero economizar no meu plano atual",
@@ -257,12 +257,12 @@ const resources = {
       landing: {
         heroTitle: "Estos son los 3 Planes de Salud con Mejor Relación Calidad-Precio que los Brasileños Más Buscan en Open Enrollment Cuando Quieren AHORRAR y Garantizar Cobertura Total",
         heroSubtitle: "Díganos qué es lo que más desea en su plan, y en menos de 2 minutos le enviaremos las mejores opciones para su perfil. (100% Gratis)",
-        heroTitleLp02: "¿Quieres descubrir los planes de salud con la mejor relación calidad-precio para brasileños durante la Inscripción Abierta/Open Enrollment?",
+        heroTitleLp02: "¿Quieres descubrir los planes de salud con la mejor relación calidad-precio para brasileños durante Open Enrollment?",
         heroSubtitleLp02: "Ingresa tu Código ZIP abajo, luego tu nombre y número para enviarte las mejores opciones para tu perfil en menos de 2 minutos. (100% Gratis)",
-        heroTitleLp03: "¿Buscas un plan de salud con la mejor relación calidad-precio para ti y tu familia durante la Inscripción Abierta/Open Enrollment?",
+        heroTitleLp03: "¿Buscas un plan de salud con la mejor relación calidad-precio para ti y tu familia durante Open Enrollment?",
         heroSubtitleLp03: "Ingresa tu Código ZIP abajo, luego tu nombre y número para enviarte las mejores opciones para tu perfil en menos de 2 minutos. (100% Gratis)",
        conversational: {
-          zip: "Dame tu código ZIP para cotizar el mejor plan para ti.",
+          zip: "",
         },
         zipPrompt: "Ingresa tu codigo ZIP para cotizar los planes",
         zipPlaceholder: "Ingresa tu codigo ZIP",
@@ -277,7 +277,7 @@ const resources = {
           thanks: "Gracias!",
         },
         conversational: {
-          zip: "Dame tu código ZIP para cotizar el mejor plan para ti.",
+          zip: "",
           name: "Ahora dime tu nombre.",
           phone: "¿Cuál es tu teléfono?",
           survey: "¿Qué representa mejor tu situación hoy?",

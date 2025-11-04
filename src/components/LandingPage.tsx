@@ -78,8 +78,7 @@ const LandingPage: React.FC<LandingPageProps> = ({
     <div className="item flex min-h-screen flex-col justify-between bg-white">
       <header className="mx-auto flex max-md:flex-col h-20 w-full max-w-7xl items-center justify-between px-6 md:px-16 max-md:mt-5">
         <a
-          href="https://2easyinsurance.com"
-          target="_blank"
+          href="#"
           rel="noreferrer"
         >
           <img src={logo} alt="2easy Insurance logo" className="h-10 w-auto" />
@@ -88,13 +87,44 @@ const LandingPage: React.FC<LandingPageProps> = ({
       </header>
 
       <main className="mx-auto flex w-full max-w-2xl flex-col items-center justify-center px-6 py-12 md:py-16">
-        {/* Título centralizado no topo */}
+        {/* Textos no topo */}
+        <div className="w-full max-w-2xl space-y-6 text-center mb-8">
+          <h2 
+            className="text-1xl font-bold text-[#461AA5] md:text-3xl leading-relaxed"
+            dangerouslySetInnerHTML={{ 
+              __html: t(heroTitleKey)
+                .replace(/os 3 Planos de Saúde/g, '<span class="underline decoration-2">os 3 Planos de Saúde</span>')
+                .replace(/Custo-Benefício/g, '<span class="underline decoration-2">Custo-Benefício</span>')
+                .replace(/ECONOMIZAR/g, '<span class="underline decoration-2">ECONOMIZAR</span>')
+                .replace(/Cobertura Total/g, '<span class="underline decoration-2">Cobertura Total</span>')
+                .replace(/the 3 Health Plans/g, '<span class="underline decoration-2">the 3 Health Plans</span>')
+                .replace(/Cost-Benefit/g, '<span class="underline decoration-2">Cost-Benefit</span>')
+                .replace(/SAVE/g, '<span class="underline decoration-2">SAVE</span>')
+                .replace(/Full Coverage/g, '<span class="underline decoration-2">Full Coverage</span>')
+                .replace(/los 3 Planes de Salud/g, '<span class="underline decoration-2">los 3 Planes de Salud</span>')
+                .replace(/Relación Calidad-Precio/g, '<span class="underline decoration-2">Relación Calidad-Precio</span>')
+                .replace(/AHORRAR/g, '<span class="underline decoration-2">AHORRAR</span>')
+                .replace(/planos de saúde com o melhor custo-benefício/g, '<span class="underline decoration-2">planos de saúde com o melhor custo-benefício</span>')
+                .replace(/health plans with the best cost-benefit/g, '<span class="underline decoration-2">health plans with the best cost-benefit</span>')
+                .replace(/planes de salud con la mejor relación calidad-precio/g, '<span class="underline decoration-2">planes de salud con la mejor relación calidad-precio</span>')
+                .replace(/plano de saúde com o melhor custo-benefício/g, '<span class="underline decoration-2">plano de saúde com o melhor custo-benefício</span>')
+                .replace(/health plan with the best cost-benefit/g, '<span class="underline decoration-2">health plan with the best cost-benefit</span>')
+                .replace(/plan de salud con la mejor relación calidad-precio/g, '<span class="underline decoration-2">plan de salud con la mejor relación calidad-precio</span>')
+            }}
+          />
+          
+          <p className="text-base text-[#2D2A45] md:text-lg">
+            {t(heroSubtitleKey)}
+          </p>
+        </div>
+
+        {/* Título do input */}
         <p className="text-lg text-primary text-center mb-6">
           {t("landing.conversational.zip")}
         </p>
 
         {/* Input ZIP CODE centralizado */}
-        <div className="w-full max-w-md mb-8">
+        <div className="w-full max-w-md">
           <form
             onSubmit={(event) => {
               event.preventDefault();
@@ -128,37 +158,6 @@ const LandingPage: React.FC<LandingPageProps> = ({
                 : t("landing.zipButton")}
             </Button>
           </form>
-        </div>
-
-        {/* Textos abaixo do campo ZIP CODE */}
-        <div className="w-full max-w-2xl space-y-6 text-center">
-          <h2 
-            className="text-1xl font-bold text-[#461AA5] md:text-3xl leading-relaxed"
-            dangerouslySetInnerHTML={{ 
-              __html: t(heroTitleKey)
-                .replace(/os 3 Planos de Saúde/g, '<span class="underline decoration-2">os 3 Planos de Saúde</span>')
-                .replace(/Custo-Benefício/g, '<span class="underline decoration-2">Custo-Benefício</span>')
-                .replace(/ECONOMIZAR/g, '<span class="underline decoration-2">ECONOMIZAR</span>')
-                .replace(/Cobertura Total/g, '<span class="underline decoration-2">Cobertura Total</span>')
-                .replace(/the 3 Health Plans/g, '<span class="underline decoration-2">the 3 Health Plans</span>')
-                .replace(/Cost-Benefit/g, '<span class="underline decoration-2">Cost-Benefit</span>')
-                .replace(/SAVE/g, '<span class="underline decoration-2">SAVE</span>')
-                .replace(/Full Coverage/g, '<span class="underline decoration-2">Full Coverage</span>')
-                .replace(/los 3 Planes de Salud/g, '<span class="underline decoration-2">los 3 Planes de Salud</span>')
-                .replace(/Relación Calidad-Precio/g, '<span class="underline decoration-2">Relación Calidad-Precio</span>')
-                .replace(/AHORRAR/g, '<span class="underline decoration-2">AHORRAR</span>')
-                .replace(/planos de saúde com o melhor custo-benefício/g, '<span class="underline decoration-2">planos de saúde com o melhor custo-benefício</span>')
-                .replace(/health plans with the best cost-benefit/g, '<span class="underline decoration-2">health plans with the best cost-benefit</span>')
-                .replace(/planes de salud con la mejor relación calidad-precio/g, '<span class="underline decoration-2">planes de salud con la mejor relación calidad-precio</span>')
-                .replace(/plano de saúde com o melhor custo-benefício/g, '<span class="underline decoration-2">plano de saúde com o melhor custo-benefício</span>')
-                .replace(/health plan with the best cost-benefit/g, '<span class="underline decoration-2">health plan with the best cost-benefit</span>')
-                .replace(/plan de salud con la mejor relación calidad-precio/g, '<span class="underline decoration-2">plan de salud con la mejor relación calidad-precio</span>')
-            }}
-          />
-          
-          <p className="text-base text-[#2D2A45] md:text-lg">
-            {t(heroSubtitleKey)}
-          </p>
         </div>
       </main>
 

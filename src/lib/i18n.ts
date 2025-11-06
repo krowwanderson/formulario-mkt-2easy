@@ -139,7 +139,7 @@ const resources = {
           zip: "",
         },
         zipPrompt: "Digite seu ZIP Code para cotar os planos",
-        zipPlaceholder: "Digite seu ZIP Code",
+        zipPlaceholder: "Digite seu ZIP Code para cotar os planos",
         zipButton: "INICIAR COTAÇÃO",
         zipButtonLoading: "Carregando...",
         familyAlt: "Família feliz protegida por um seguro",

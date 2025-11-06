@@ -5,8 +5,8 @@ const resources = {
   en: {
     translation: {
       landing: {
-        heroTitle: "These are the 3 Health Plans with the Best Cost-Benefit that Brazilians Most Seek in Open Enrollment When They Want to SAVE and Guarantee Full Coverage",
-        heroSubtitle: "Tell us what you want most in your plan, and in less than 2 minutes we'll send you the best options for your profile. (100% Free)",
+        heroTitle: "Understand in 1 minute if your health plan is the most economical for 2026.",
+        heroSubtitle: "✅ Compare plans from major insurers — fast and uncomplicated.<br/><br/>✅ Know what it really covers and how much comes out of your pocket, simply and in English.<br/><br/>✅ See how to save up to 83% on your monthly payment — even keeping your current plan.",
         heroTitleLp02: "Want to discover the health plans with the best cost-benefit for Brazilians during Open Enrollment?",
         heroSubtitleLp02: "Enter your Zip Code below, then your name and number so we can send you the best options for your profile in less than 2 minutes. (100% Free)",
         heroTitleLp03: "Looking for a health plan with the best cost-benefit for you and your family during Open Enrollment?",
@@ -16,7 +16,7 @@ const resources = {
         },
         zipPrompt: "Enter your ZIP Code to quote plans",
         zipPlaceholder: "Enter your ZIP Code",
-        zipButton: "I want to see the best plan for me.",
+        zipButton: "START QUOTE",
         zipButtonLoading: "Loading...",
         familyAlt: "Happy family protected by insurance",
       },
@@ -130,9 +130,8 @@ const resources = {
   br: {
     translation: {
       landing: {
-        heroTitle: "Esses são os 3 Planos de Saúde com Melhor Custo-Benefício que Brasileiros Mais Procuram no Open Enrollment Quando Querem ECONOMIZAR e Garantir Cobertura Total",
-        heroSubtitle: "Nos fale o que você mais quer no seu plano, e em menos de 2 minutos enviaremos as melhores opções para o seu perfil. (100% Gratuito)",
-        heroTitleLp02: "Quer descobrir os planos de saúde com o melhor custo-benefício para brasileiros durante o Open Enrollment?",
+        heroTitle: "Entenda em 1 minuto se o seu plano de saúde é o mais econômico para 2026.",
+        heroSubtitle: "✅ Compare planos das principais seguradoras — rápido e sem complicação.<br/><br/>✅ Saiba o que realmente cobre e quanto sai do seu bolso, de forma simples e em português.<br/><br/>✅ Veja como economizar até 83% na mensalidade — mesmo mantendo o plano atual.",heroTitleLp02: "Quer descobrir os planos de saúde com o melhor custo-benefício para brasileiros durante o Open Enrollment?",
         heroSubtitleLp02: "Coloque seu Zip Code abaixo, e depois seu nome e número para enviarmos as melhores opções para o seu perfil, em menos de 2 minutos. (100% Gratuito)",
         heroTitleLp03: "Procurando um plano de saúde com o melhor custo-benefício para você e para sua família durante o Open Enrollment?",
         heroSubtitleLp03: "Coloque seu Zip Code abaixo, e depois seu nome e número para enviarmos as melhores opções para o seu perfil, em menos de 2 minutos. (100% Gratuito)",
@@ -141,7 +140,7 @@ const resources = {
         },
         zipPrompt: "Digite seu ZIP Code para cotar os planos",
         zipPlaceholder: "Digite seu ZIP Code",
-        zipButton: "Quero ver o melhor plano para mim.",
+        zipButton: "INICIAR COTAÇÃO",
         zipButtonLoading: "Carregando...",
         familyAlt: "Família feliz protegida por um seguro",
       },
@@ -255,9 +254,9 @@ const resources = {
   es: {
     translation: {
       landing: {
-        heroTitle: "Estos son los 3 Planes de Salud con Mejor Relación Calidad-Precio que los Brasileños Más Buscan en Open Enrollment Cuando Quieren AHORRAR y Garantizar Cobertura Total",
-        heroSubtitle: "Díganos qué es lo que más desea en su plan, y en menos de 2 minutos le enviaremos las mejores opciones para su perfil. (100% Gratis)",
-        heroTitleLp02: "¿Quieres descubrir los planes de salud con la mejor relación calidad-precio para brasileños durante Open Enrollment?",
+        heroTitle: "Entiende en 1 minuto si tu plan de salud es el más económico para 2026.",
+        heroSubtitle: "✅ Compara planes de las principales aseguradoras — rápido y sin complicaciones.<br/><br/>✅ Saber qué realmente cubre y cuánto sale de tu bolsillo, de forma simple y en español.<br/><br/>✅ Ver cómo ahorrar hasta 83% en la mensualidad — incluso manteniendo el plan actual.",
+          heroTitleLp02: "¿Quieres descubrir los planes de salud con la mejor relación calidad-precio para brasileños durante Open Enrollment?",
         heroSubtitleLp02: "Ingresa tu Código ZIP abajo, luego tu nombre y número para enviarte las mejores opciones para tu perfil en menos de 2 minutos. (100% Gratis)",
         heroTitleLp03: "¿Buscas un plan de salud con la mejor relación calidad-precio para ti y tu familia durante Open Enrollment?",
         heroSubtitleLp03: "Ingresa tu Código ZIP abajo, luego tu nombre y número para enviarte las mejores opciones para tu perfil en menos de 2 minutos. (100% Gratis)",
@@ -266,7 +265,7 @@ const resources = {
         },
         zipPrompt: "Ingresa tu codigo ZIP para cotizar los planes",
         zipPlaceholder: "Ingresa tu codigo ZIP",
-        zipButton: "Quiero ver el mejor plan para mí.",
+        zipButton: "INICIAR COTIZACIÓN",
         zipButtonLoading: "Cargando...",
         familyAlt: "Familia feliz protegida por un seguro",
       },

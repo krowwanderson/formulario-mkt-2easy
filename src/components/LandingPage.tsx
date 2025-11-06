@@ -113,9 +113,10 @@ const LandingPage: React.FC<LandingPageProps> = ({
             }}
           />
           
-          <p className="text-base text-[#2D2A45] md:text-lg">
-            {t(heroSubtitleKey)}
-          </p>
+          <p 
+            className="text-base text-[#2D2A45] md:text-lg"
+            dangerouslySetInnerHTML={{ __html: t(heroSubtitleKey) }}
+          />
         </div>
 
         {/* Título do input */}
